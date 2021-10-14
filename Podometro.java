@@ -7,6 +7,8 @@
  * 1.0
  */
 public class Podometro {
+    private final double ZANCADA_HOMBRE = 0.45;
+    private final double ZANCADA_MUJER= 0.41;
     private String marca;
     private char sexo;
     private int pasos;
@@ -20,8 +22,6 @@ public class Podometro {
     private double totalDistanciaFinSemana;
     private int tiempo;
     private int caminatasNoche;
-    private double ZANCADA_HOMBRE;
-    private double ZANCADA_MUJER;
     /**
      * Inicializa el podómetro con la marca indicada por el parámetro.
      * El resto de atributos se ponen a 0 y el sexo, por defecto, es mujer
@@ -29,9 +29,9 @@ public class Podometro {
     public Podometro(String queMarca) {
         marca = queMarca;
         sexo = 'M';
-        pasos =0;
-        distancia =0;
-        altura =0;
+        pasos = 0;
+        distancia = 0;
+        altura = 0;
         caminatasNoche = 0;
         tiempo = 0;
         totalDistanciaFinSemana = 0;
@@ -40,8 +40,6 @@ public class Podometro {
         totalPasosSabado = 0;
         totalPasosLaborables = 0;
         longitudZancada = 0;
-        ZANCADA_HOMBRE = 0.45;
-        ZANCADA_MUJER = 0.41;
     }
 
     /**
@@ -147,7 +145,10 @@ public class Podometro {
                 break;   
         }
         totalDistanciaFinSemana= (totalPasosSabado + totalPasosDomingo) * longitudZancada/100000;
-        totalDistanciaSemana= totalPasosLaborables * longitudZancada/100000 + totalDistanciaFinSemana; 
+        totalDistanciaSemana= totalPasosLaborables * longitudZancada/100000 + totalDistanciaFinSemana;
+        if(horaInicio>=2100){
+        caminatasNoche ++;
+        }  
     }
 
     public void printEstadísticas() {
@@ -165,7 +166,7 @@ public class Podometro {
         System.out.println("Nº pasos DOMINGO" +" "+ totalPasosDomingo);
         System.out.println(""); 
         System.out.println("");
-        System.out.println("Nº caminatas realizadas a partir de las 21h.");
+        System.out.println("Nº caminatas realizadas a partir de las 21h."+ caminatasNoche);
         System.out.println("");
         System.out.println("");
         System.out.println("Tiempo total caminado en la semana."+ tiempoHoras + "h"+"y"+ tiempoMinutos + "m");
@@ -217,7 +218,5 @@ public class Podometro {
         totalPasosSabado = 0;
         totalPasosLaborables = 0;
         longitudZancada = 0;
-        ZANCADA_HOMBRE = 0;
-        ZANCADA_MUJER = 0;
     }
 }
