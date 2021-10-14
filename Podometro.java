@@ -207,9 +207,9 @@ public class Podometro {
      */    
     public void reset() {
         sexo = 'M';
-        pasos =0;
-        distancia =0;
-        altura =0;
+        pasos = 0;
+        distancia = 0;
+        altura = 0;
         caminatasNoche = 0;
         tiempo = 0;
         totalDistanciaFinSemana = 0;
